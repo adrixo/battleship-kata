@@ -1,15 +1,20 @@
 package battleship;
 
-public class Game {
+import java.util.ArrayList;
 
+public class Game {
     private Console console;
+    public final ArrayList<Player> players;
 
     public Game(Console console) {
         this.console = console;
+        players = new ArrayList<Player>();
     }
 
-    public void addPlayer(String name) {
-        throw new UnsupportedOperationException();
+    public void addPlayer(Player player) {
+        if (players.size() >= 2)
+            throw new UnsupportedOperationException();
+        players.add(player);
     }
 
     public void start() {

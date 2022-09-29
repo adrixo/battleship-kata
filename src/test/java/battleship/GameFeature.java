@@ -22,16 +22,16 @@ class GameFeature {
     @Test
     void place_ships_and_print_board() {
         Game game = new Game(console);
-        String playerName = "Player1";
-        game.addPlayer(playerName);
+        Player player1 = new Player("Player1");
+        game.addPlayer(player1);
 
-        game.addShip(playerName, "g", 7, 2, "vertical");
-        game.addShip(playerName, "g", 6, 4, "vertical");
-        game.addShip(playerName, "g", 1, 7, "vertical");
-        game.addShip(playerName, "g", 9, 9, "vertical");
-        game.addShip(playerName, "d", 2, 3, "horizontal");
-        game.addShip(playerName, "d", 7, 5, "vertical");
-        game.addShip(playerName, "d", 8, 4, "vertical");
+        game.addShip("Player1", "g", 7, 2, "vertical");
+        game.addShip("Player1", "g", 6, 4, "vertical");
+        game.addShip("Player1", "g", 1, 7, "vertical");
+        game.addShip("Player1", "g", 9, 9, "vertical");
+        game.addShip("Player1", "d", 2, 3, "horizontal");
+        game.addShip("Player1", "d", 7, 5, "vertical");
+        game.addShip("Player1", "d", 8, 4, "vertical");
 
         game.print();
 
