@@ -4,6 +4,7 @@ import battleship.exceptions.OccupiedSpaceException;
 import battleship.exceptions.ShipOutOfBoundException;
 import battleship.model.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,14 +27,22 @@ public class PlayerService {
     }
 
     void addShip(Ship newShip) throws OccupiedSpaceException, ShipOutOfBoundException {
+        verifyOutOfBounds(newShip);
+        Player player = currentPlayer();
+        verifyNotColision(player.getShips(), newShip);
+        player.addShip(newShip);
+    }
+
+    private static void verifyNotColision(ArrayList<Ship> ships, Ship newShip) throws OccupiedSpaceException {
+        for (Ship ship : ships) {
+            for (Coordinate occupiedCoordinates : ship.occupiedCoordinates)
+                if (newShip.occupies(occupiedCoordinates))
+                    throw new OccupiedSpaceException();
+        }
+    }
+
+    private static void verifyOutOfBounds(Ship newShip) throws ShipOutOfBoundException {
         if (newShip.isOutOfBounds())
             throw new ShipOutOfBoundException();
-
-        Player player = currentPlayer();
-        for (Ship ship : player.getShips()) {
-            if (ship.occupies(newShip.originCoordinates))
-                throw new OccupiedSpaceException();
-        }
-        player.addShip(newShip);
     }
 }

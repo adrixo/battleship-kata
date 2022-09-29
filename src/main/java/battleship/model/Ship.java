@@ -5,7 +5,7 @@ import java.util.List;
 public class Ship {
     private SHIP_TYPE shipType;
     public final Coordinate originCoordinates;
-    private final List<Coordinate> occupiedCoordinates;
+    public final List<Coordinate> occupiedCoordinates;
 
     public Ship(SHIP_TYPE shipType, Coordinate coordinates) {
         this.shipType = shipType;
@@ -14,8 +14,10 @@ public class Ship {
     }
 
     public boolean occupies(Coordinate point) {
-        if (originCoordinates.x == point.x && originCoordinates.y == point.y)
-            return true;
+        for (Coordinate occupiedCoordinate : occupiedCoordinates) {
+            if (occupiedCoordinate.x == point.x && occupiedCoordinate.y == point.y)
+                return true;
+        }
         return false;
     }
 

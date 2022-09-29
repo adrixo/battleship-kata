@@ -65,11 +65,11 @@ class PlayerServiceShould {
     add_three_tipes_of_ships() throws OccupiedSpaceException, ShipOutOfBoundException {
         Player player = new Player("Player1");
         playerService.addPlayer(player);
-        Coordinate coordinates1 = new Coordinate(7, 2, DIRECTION.HORIZONTAL);
+        Coordinate coordinates1 = new Coordinate(7, 2, DIRECTION.NONE);
         Ship ship1 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1);
-        Coordinate coordinates6 = new Coordinate(5, 6, DIRECTION.VERTICAL);
+        Coordinate coordinates6 = new Coordinate(2, 3, DIRECTION.HORIZONTAL);
         Ship ship6 = new Ship(SHIP_TYPE.DESTRUCTOR, coordinates6);
-        Coordinate coordinates7 = new Coordinate(5, 4, DIRECTION.VERTICAL);
+        Coordinate coordinates7 = new Coordinate(8, 4, DIRECTION.VERTICAL);
         Ship ship7 = new Ship(SHIP_TYPE.CARRIER, coordinates7);
         playerService.addShip(ship1);
         playerService.addShip(ship6);
