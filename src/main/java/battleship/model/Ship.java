@@ -1,12 +1,16 @@
 package battleship.model;
 
+import java.util.List;
+
 public class Ship {
     private SHIP_TYPE shipType;
     public final Coordinate originCoordinates;
+    private final List<Coordinate> occupiedCoordinates;
 
     public Ship(SHIP_TYPE shipType, Coordinate coordinates) {
         this.shipType = shipType;
         this.originCoordinates = coordinates;
+        this.occupiedCoordinates = Coordinate.generateShipOfOccupiedCoordinates(originCoordinates, shipType.getSize());
     }
 
     public boolean occupies(Coordinate point) {
@@ -20,9 +24,13 @@ public class Ship {
     }
 
     public boolean isOutOfBounds() {
-        return originCoordinates.x<0 ||
-                originCoordinates.x>=VAR.MAX_BOARD_SIZE-1||
-                originCoordinates.y<0 ||
-                originCoordinates.y>=VAR.MAX_BOARD_SIZE-1;
+        if ( originCoordinates.x<0 || originCoordinates.y<0)
+            return true;
+        for (Coordinate occupiedCordinate : occupiedCoordinates){
+            if(occupiedCordinate.x >= VAR.MAX_BOARD_SIZE || occupiedCordinate.y >= VAR.MAX_BOARD_SIZE)
+                return true;
+        }
+        return false;
     }
+
 }

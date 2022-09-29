@@ -67,9 +67,9 @@ class PlayerServiceShould {
         playerService.addPlayer(player);
         Coordinate coordinates1 = new Coordinate(7, 2, DIRECTION.HORIZONTAL);
         Ship ship1 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1);
-        Coordinate coordinates6 = new Coordinate(5, 7, DIRECTION.VERTICAL);
+        Coordinate coordinates6 = new Coordinate(5, 6, DIRECTION.VERTICAL);
         Ship ship6 = new Ship(SHIP_TYPE.DESTRUCTOR, coordinates6);
-        Coordinate coordinates7 = new Coordinate(8, 4, DIRECTION.VERTICAL);
+        Coordinate coordinates7 = new Coordinate(5, 4, DIRECTION.VERTICAL);
         Ship ship7 = new Ship(SHIP_TYPE.CARRIER, coordinates7);
         playerService.addShip(ship1);
         playerService.addShip(ship6);
@@ -100,7 +100,7 @@ class PlayerServiceShould {
         /* C C | C*/
         playerService.addPlayer(new Player("Player1"));
         Coordinate coordinates1 = new Coordinate(MAX_BOARD_SIZE-2, 0, DIRECTION.HORIZONTAL);
-        Ship ship1 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1);
+        Ship ship1 = new Ship(SHIP_TYPE.CARRIER, coordinates1);
         assertThrows(ShipOutOfBoundException.class, () -> {playerService.addShip(ship1); });
     }
 
@@ -111,8 +111,8 @@ class PlayerServiceShould {
          *  -
          *  C*/
         playerService.addPlayer(new Player("Player1"));
-        Coordinate coordinates1 = new Coordinate(0, MAX_BOARD_SIZE-2, DIRECTION.HORIZONTAL);
-        Ship ship1 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1);
+        Coordinate coordinates1 = new Coordinate(0, MAX_BOARD_SIZE-2, DIRECTION.VERTICAL);
+        Ship ship1 = new Ship(SHIP_TYPE.DESTRUCTOR, coordinates1);
         assertThrows(ShipOutOfBoundException.class, () -> {playerService.addShip(ship1); });
     }
 
