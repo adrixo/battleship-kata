@@ -118,13 +118,12 @@ class GameShould {
     @Test public void
     print_player1_one_gunship_on72() {
         game.addPlayer(new Player("Player1"));
-        game.print();
 
         Coordinate coordinates1 = new Coordinate(7, 2, DIRECTION.HORIZONTAL);
         Ship ship1 = new Ship(SHIP_TYPE.SHOTGUN, coordinates1);
         game.addShip(PLAYER_NM.ONE, ship1);
 
-        String[] voidBoard = new String[]{
+        String[] expectedBoard = new String[]{
                 " | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
                 "0|   |   |   |   |   |   |   |   |   |   |",
                 "1|   |   |   |   |   |   |   |   |   |   |",
@@ -138,7 +137,9 @@ class GameShould {
                 "9|   |   |   |   |   |   |   |   |   |   |"
         };
 
-        for (String line : voidBoard ) {
+        game.print();
+
+        for (String line : expectedBoard ) {
             verify(console).printLine(line);
         }
     }

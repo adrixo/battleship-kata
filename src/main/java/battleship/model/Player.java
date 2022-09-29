@@ -21,8 +21,10 @@ public class Player {
     }
 
     public String getMarkAt(Coordinate coordinate) {
-        if (coordinate.x==7 && coordinate.y==2)
-            return "s";
+        for (Ship ship : ships) {
+            if (ship.ocupies(coordinate))
+                return ship.getMark();
+        }
         return " ";
     }
 }
