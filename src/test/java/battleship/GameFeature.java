@@ -13,6 +13,7 @@ import static org.mockito.Mockito.verify;
 class GameFeature {
     @Mock
     Console console;
+    @Mock PlayerService playerService;
 
     @BeforeEach
     void setUp() {
@@ -20,7 +21,7 @@ class GameFeature {
 
     @Test
     void place_ships_and_print_board() {
-        Game game = new Game(console);
+        Game game = new Game(console, playerService);
         Player player1 = new Player("Player1");
         game.addPlayer(player1);
 
@@ -39,13 +40,13 @@ class GameFeature {
         Coordinate coordinates7 = new Coordinate(8, 4, DIRECTION.VERTICAL);
         Ship ship7 = new Ship(SHIP_TYPE.CARRIER, coordinates7);
 
-        game.addShip(PLAYER_NM.ONE, ship1);
-        game.addShip(PLAYER_NM.ONE, ship2);
-        game.addShip(PLAYER_NM.ONE, ship3);
-        game.addShip(PLAYER_NM.ONE, ship4);
-        game.addShip(PLAYER_NM.ONE, ship5);
-        game.addShip(PLAYER_NM.ONE, ship6);
-        game.addShip(PLAYER_NM.ONE, ship7);
+        game.addShip(ship1);
+        game.addShip(ship2);
+        game.addShip(ship3);
+        game.addShip(ship4);
+        game.addShip(ship5);
+        game.addShip(ship6);
+        game.addShip(ship7);
 
         game.print();
 
