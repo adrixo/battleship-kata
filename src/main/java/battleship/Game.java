@@ -16,8 +16,10 @@ public class Game {
     public void addPlayer(Player player) {
         if (players.size() >= 2)
             throw new UnsupportedOperationException();
-        if (players.size() == 1)
+        if (players.size() == 1) {
             players.put(PLAYER_NM.TWO, player);
+            return;
+        }
         players.put(PLAYER_NM.ONE, player);
     }
 
