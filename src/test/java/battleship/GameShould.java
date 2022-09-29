@@ -25,7 +25,7 @@ class GameShould {
     add_one_player() {
         Player player = new Player("player1");
         game.addPlayer(player);
-        assertThat(game.players).contains(player);
+        assertThat(game.players.get(PLAYER_NM.ONE)).isEqualTo(player);
     }
 
     @Test public void
@@ -34,8 +34,8 @@ class GameShould {
         Player player2 = new Player("player2");
         game.addPlayer(player);
         game.addPlayer(player2);
-        assertThat(game.players).contains(player);
-        assertThat(game.players).contains(player2);
+        assertThat(game.players.get(PLAYER_NM.ONE)).isEqualTo(player);
+        assertThat(game.players.get(PLAYER_NM.TWO)).isEqualTo(player2);
     }
 
     @Test public void
@@ -45,8 +45,8 @@ class GameShould {
         Player player3 = new Player("player3");
         game.addPlayer(player);
         game.addPlayer(player2);
-        assertThat(game.players).contains(player);
-        assertThat(game.players).contains(player2);
+        assertThat(game.players.get(PLAYER_NM.ONE)).isEqualTo(player);
+        assertThat(game.players.get(PLAYER_NM.TWO)).isEqualTo(player2);
 
         assertThrows(
                 UnsupportedOperationException.class,
@@ -54,5 +54,18 @@ class GameShould {
                     game.addPlayer(player3);
                 }
         );
+    }
+
+    @Test public void
+    add_g_ship() {
+        Player player = new Player("Player1");
+        game.addPlayer(player);
+        Coordinates coordinates = new Coordinates(7, 2, DIRECTION.HORIZONTAL);
+        Ship ship = new Ship(SHIP.SHOTGUN, coordinates);
+
+        game.addShip(PLAYER_NM.ONE, ship);
+
+        assertThat(game.players.get(PLAYER_NM.ONE).getShips()).contains(ship);
+
     }
 }

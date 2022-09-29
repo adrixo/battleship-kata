@@ -25,13 +25,28 @@ class GameFeature {
         Player player1 = new Player("Player1");
         game.addPlayer(player1);
 
-        game.addShip("Player1", "g", 7, 2, "vertical");
-        game.addShip("Player1", "g", 6, 4, "vertical");
-        game.addShip("Player1", "g", 1, 7, "vertical");
-        game.addShip("Player1", "g", 9, 9, "vertical");
-        game.addShip("Player1", "d", 2, 3, "horizontal");
-        game.addShip("Player1", "d", 7, 5, "vertical");
-        game.addShip("Player1", "d", 8, 4, "vertical");
+        Coordinates coordinates1 = new Coordinates(7, 2, DIRECTION.HORIZONTAL);
+        Ship ship1 = new Ship(SHIP.SHOTGUN, coordinates1);
+        Coordinates coordinates2 = new Coordinates(6, 4, DIRECTION.HORIZONTAL);
+        Ship ship2 = new Ship(SHIP.SHOTGUN, coordinates2);
+        Coordinates coordinates3 = new Coordinates(1, 7, DIRECTION.HORIZONTAL);
+        Ship ship3 = new Ship(SHIP.SHOTGUN, coordinates3);
+        Coordinates coordinates4 = new Coordinates(9, 9, DIRECTION.HORIZONTAL);
+        Ship ship4 = new Ship(SHIP.SHOTGUN, coordinates4);
+        Coordinates coordinates5 = new Coordinates(2, 3, DIRECTION.HORIZONTAL);
+        Ship ship5 = new Ship(SHIP.DESTRUCTOR, coordinates5);
+        Coordinates coordinates6 = new Coordinates(5, 7, DIRECTION.VERTICAL);
+        Ship ship6 = new Ship(SHIP.DESTRUCTOR, coordinates6);
+        Coordinates coordinates7 = new Coordinates(8, 4, DIRECTION.VERTICAL);
+        Ship ship7 = new Ship(SHIP.CARRIER, coordinates7);
+
+        game.addShip(PLAYER_NM.ONE, ship1);
+        game.addShip(PLAYER_NM.ONE, ship2);
+        game.addShip(PLAYER_NM.ONE, ship3);
+        game.addShip(PLAYER_NM.ONE, ship4);
+        game.addShip(PLAYER_NM.ONE, ship5);
+        game.addShip(PLAYER_NM.ONE, ship6);
+        game.addShip(PLAYER_NM.ONE, ship7);
 
         game.print();
 

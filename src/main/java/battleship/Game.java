@@ -1,20 +1,24 @@
 package battleship;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Game {
     private Console console;
-    public final ArrayList<Player> players;
+    public final Map<PLAYER_NM, Player> players;
 
     public Game(Console console) {
         this.console = console;
-        players = new ArrayList<Player>();
+        players = new HashMap<>();
     }
 
     public void addPlayer(Player player) {
         if (players.size() >= 2)
             throw new UnsupportedOperationException();
-        players.add(player);
+        if (players.size() == 1)
+            players.put(PLAYER_NM.TWO, player);
+        players.put(PLAYER_NM.ONE, player);
     }
 
     public void start() {
@@ -33,7 +37,9 @@ public class Game {
         throw new UnsupportedOperationException();
     }
 
-        public void addShip(String playerName, String shipType, int x, int y, String direction) {
-            throw new UnsupportedOperationException();
-        }
+    public void addShip(PLAYER_NM playerNumber, Ship Ship) {
+        Player player = players.get(playerNumber);
+        player.addShip(Ship);
+    }
+
 }
