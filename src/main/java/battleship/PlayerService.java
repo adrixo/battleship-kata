@@ -1,8 +1,8 @@
 package battleship;
 
-import battleship.model.PLAYER_NM;
-import battleship.model.Player;
-import battleship.model.Ship;
+import battleship.exceptions.OccupiedSpaceException;
+import battleship.exceptions.ShipOutOfBoundException;
+import battleship.model.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,8 +25,15 @@ public class PlayerService {
         return players.get(PLAYER_NM.ONE);
     }
 
-    void addShip(Ship Ship) {
+    void addShip(Ship newShip) throws OccupiedSpaceException, ShipOutOfBoundException {
+        if (newShip.isOutOfBounds())
+            throw new ShipOutOfBoundException();
+
         Player player = currentPlayer();
-        player.addShip(Ship);
+        for (Ship ship : player.getShips()) {
+            if (ship.occupies(newShip.originCoordinates))
+                throw new OccupiedSpaceException();
+        }
+        player.addShip(newShip);
     }
 }

@@ -1,5 +1,7 @@
 package battleship;
 
+import battleship.exceptions.OccupiedSpaceException;
+import battleship.exceptions.ShipOutOfBoundException;
 import battleship.model.Coordinate;
 import battleship.model.Player;
 import battleship.model.Ship;
@@ -31,7 +33,7 @@ public class Game {
         throw new UnsupportedOperationException();
     }
 
-    public void addShip(Ship Ship) {
+    public void addShip(Ship Ship) throws OccupiedSpaceException, ShipOutOfBoundException {
         playerService.addShip(Ship);
     }
 

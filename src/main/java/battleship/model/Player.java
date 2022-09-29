@@ -22,7 +22,7 @@ public class Player {
 
     public String getMarkAt(Coordinate coordinate) {
         for (Ship ship : ships) {
-            if (ship.ocupies(coordinate))
+            if (ship.occupies(coordinate))
                 return ship.getMark();
         }
         return " ";

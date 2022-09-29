@@ -52,17 +52,17 @@ class PlayerServiceShould {
     }
 
     @Test public void
-    add_g_ship() {
+    add_g_ship() throws OccupiedSpaceException, ShipOutOfBoundException {
         Player player = new Player("Player1");
         playerService.addPlayer(player);
         Coordinate coordinates = new Coordinate(7, 2, DIRECTION.HORIZONTAL);
         Ship ship = new Ship(SHIP_TYPE.GUNSHIP, coordinates);
         playerService.addShip(ship);
-        verify(playerService).addShip(ship);
+        assertThat(playerService.players.get(PLAYER_NM.ONE).getShips()).contains(ship);
     }
         
     @Test public void
-    add_three_tipes_of_ships() {
+    add_three_tipes_of_ships() throws OccupiedSpaceException, ShipOutOfBoundException {
         Player player = new Player("Player1");
         playerService.addPlayer(player);
         Coordinate coordinates1 = new Coordinate(7, 2, DIRECTION.HORIZONTAL);
@@ -106,7 +106,7 @@ class PlayerServiceShould {
 
     @Test public void
     throw_exception_when_add_ship_extension_out_of_bounds_vertical() {
-        /* C
+        /*  C
          *  C
          *  -
          *  C*/
@@ -117,7 +117,7 @@ class PlayerServiceShould {
     }
 
     @Test public void
-    throw_exception_when_add_ship_on_occupied_space() {
+    throw_exception_when_add_ship_on_occupied_space() throws OccupiedSpaceException, ShipOutOfBoundException {
         playerService.addPlayer(new Player("Player1"));
         Coordinate coordinates1 = new Coordinate(4, 4, DIRECTION.HORIZONTAL);
         Ship ship1 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1);
@@ -127,7 +127,7 @@ class PlayerServiceShould {
     }
 
     @Test public void
-    throw_exception_when_add_ship_on_occupied_space_by_horizontal_extension() {
+    throw_exception_when_add_ship_on_occupied_space_by_horizontal_extension() throws OccupiedSpaceException, ShipOutOfBoundException {
         /*
          C C [C]
          */
@@ -141,7 +141,7 @@ class PlayerServiceShould {
     }
 
     @Test public void
-    throw_exception_when_add_ship_on_occupied_space_by_vertical_extension() {
+    throw_exception_when_add_ship_on_occupied_space_by_vertical_extension() throws OccupiedSpaceException, ShipOutOfBoundException {
         /*
          C
          C
@@ -157,7 +157,7 @@ class PlayerServiceShould {
     }
 
     @Test public void
-    throw_exception_when_add_ship_on_occupied_space_both_extension() {
+    throw_exception_when_add_ship_on_occupied_space_both_extension() throws OccupiedSpaceException, ShipOutOfBoundException {
         /*
               C
               C

@@ -40,7 +40,7 @@ class GameShould {
 
     @Test
     public void
-    add_g_ship() {
+    add_g_ship() throws OccupiedSpaceException, ShipOutOfBoundException {
         Player player = new Player("Player1");
         game.addPlayer(player);
         Coordinate coordinates = new Coordinate(7, 2, DIRECTION.HORIZONTAL);
@@ -51,7 +51,7 @@ class GameShould {
 
     @Test
     public void
-    print_current_player() {
+    print_current_player()  {
         when(playerService.currentPlayer()).thenReturn(new Player("player1"));
         game.print();
         verify(console).printPlayersBoard(isA(Player.class));

@@ -1,5 +1,7 @@
 package battleship;
 
+import battleship.exceptions.OccupiedSpaceException;
+import battleship.exceptions.ShipOutOfBoundException;
 import battleship.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +22,7 @@ class GameFeature {
     }
 
     @Test
-    void place_ships_and_print_board() {
+    void place_ships_and_print_board() throws OccupiedSpaceException, ShipOutOfBoundException {
         Game game = new Game(console, playerService);
         Player player1 = new Player("Player1");
         game.addPlayer(player1);
