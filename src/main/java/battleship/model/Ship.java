@@ -22,7 +22,7 @@ public class Ship {
     }
 
     public String getMark() {
-        return "g";
+        return shipType.getAbbr();
     }
 
     public boolean isOutOfBounds() {

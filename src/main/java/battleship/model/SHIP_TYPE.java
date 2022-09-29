@@ -2,8 +2,8 @@ package battleship.model;
 
 public enum SHIP_TYPE {
     GUNSHIP("gunship", "g", 1),
-    CARRIER("carrier", "c", 3),
-    DESTRUCTOR("destructor", "d", 4);
+    CARRIER("carrier", "c", 4),
+    DESTRUCTOR("destructor", "d", 3);
 
     private final String full;
     private final String abbr;

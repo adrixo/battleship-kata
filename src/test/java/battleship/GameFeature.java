@@ -2,6 +2,8 @@ package battleship;
 
 import battleship.exceptions.OccupiedSpaceException;
 import battleship.exceptions.ShipOutOfBoundException;
+import battleship.mocks.InjectedMock;
+import battleship.mocks.TestableConsole;
 import battleship.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,9 +15,11 @@ import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 class GameFeature {
+
     @Mock
+    InjectedMock im;
     Console console;
-    @Mock PlayerService playerService;
+    PlayerService playerService;
 
     @BeforeEach
     void setUp() {
@@ -23,6 +27,8 @@ class GameFeature {
 
     @Test
     void place_ships_and_print_board() throws OccupiedSpaceException, ShipOutOfBoundException {
+        console = new TestableConsole(im);
+        playerService = new PlayerService();
         Game game = new Game(console, playerService);
         Player player1 = new Player("Player1");
         game.addPlayer(player1);
@@ -67,7 +73,7 @@ class GameFeature {
         };
 
         for(String line : resultLines) {
-            verify(console).printLine(line);
+            verify(im).printLine(line);
         }
     }
 }

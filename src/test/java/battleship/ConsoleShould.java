@@ -1,5 +1,7 @@
 package battleship;
 
+import battleship.mocks.InjectedMock;
+import battleship.mocks.TestableConsole;
 import battleship.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,22 +22,6 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ConsoleShould {
-
-    private class InjectedMock {
-        public void printLine(String line) {
-            throw new UnsupportedOperationException();
-        }
-    }
-    private class TestableConsole extends Console {
-        private InjectedMock im;
-        public TestableConsole(InjectedMock im) {
-            this.im = im;
-        }
-        @Override
-        public void printLine(String line) {
-            im.printLine(line);
-        }
-    }
 
     @Mock
     Player currentPlayer;
