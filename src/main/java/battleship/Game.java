@@ -30,7 +30,7 @@ public class Game {
         throw new UnsupportedOperationException();
     }
 
-    public void endTurn() {
+    public void endTurONEn() {
         throw new UnsupportedOperationException();
     }
 

@@ -67,6 +67,26 @@ class GameShould {
         game.addShip(PLAYER_NM.ONE, ship);
 
         assertThat(game.players.get(PLAYER_NM.ONE).getShips()).contains(ship);
+    }
 
+    @Test public void
+    add_three_tipes_of_ships() {
+        Player player = new Player("Player1");
+        game.addPlayer(player);
+
+        Coordinates coordinates1 = new Coordinates(7, 2, DIRECTION.HORIZONTAL);
+        Ship ship1 = new Ship(SHIP_TYPE.SHOTGUN, coordinates1);
+        Coordinates coordinates6 = new Coordinates(5, 7, DIRECTION.VERTICAL);
+        Ship ship6 = new Ship(SHIP_TYPE.DESTRUCTOR, coordinates6);
+        Coordinates coordinates7 = new Coordinates(8, 4, DIRECTION.VERTICAL);
+        Ship ship7 = new Ship(SHIP_TYPE.CARRIER, coordinates7);
+
+        game.addShip(PLAYER_NM.ONE, ship1);
+        game.addShip(PLAYER_NM.ONE, ship6);
+        game.addShip(PLAYER_NM.ONE, ship7);
+
+        assertThat(game.players.get(PLAYER_NM.ONE).getShips()).contains(ship1);
+        assertThat(game.players.get(PLAYER_NM.ONE).getShips()).contains(ship6);
+        assertThat(game.players.get(PLAYER_NM.ONE).getShips()).contains(ship7);
     }
 }
