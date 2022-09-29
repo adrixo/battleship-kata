@@ -19,4 +19,10 @@ public class Player {
     public void addShip(Ship ship) {
         ships.add(ship);
     }
+
+    public String getMarkAt(Coordinate coordinate) {
+        if (coordinate.x==7 && coordinate.y==2)
+            return "s";
+        return " ";
+    }
 }

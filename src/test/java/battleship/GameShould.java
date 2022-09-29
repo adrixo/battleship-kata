@@ -62,7 +62,7 @@ class GameShould {
     add_g_ship() {
         Player player = new Player("Player1");
         game.addPlayer(player);
-        Coordinates coordinates = new Coordinates(7, 2, DIRECTION.HORIZONTAL);
+        Coordinate coordinates = new Coordinate(7, 2, DIRECTION.HORIZONTAL);
         Ship ship = new Ship(SHIP_TYPE.SHOTGUN, coordinates);
 
         game.addShip(PLAYER_NM.ONE, ship);
@@ -75,11 +75,11 @@ class GameShould {
         Player player = new Player("Player1");
         game.addPlayer(player);
 
-        Coordinates coordinates1 = new Coordinates(7, 2, DIRECTION.HORIZONTAL);
+        Coordinate coordinates1 = new Coordinate(7, 2, DIRECTION.HORIZONTAL);
         Ship ship1 = new Ship(SHIP_TYPE.SHOTGUN, coordinates1);
-        Coordinates coordinates6 = new Coordinates(5, 7, DIRECTION.VERTICAL);
+        Coordinate coordinates6 = new Coordinate(5, 7, DIRECTION.VERTICAL);
         Ship ship6 = new Ship(SHIP_TYPE.DESTRUCTOR, coordinates6);
-        Coordinates coordinates7 = new Coordinates(8, 4, DIRECTION.VERTICAL);
+        Coordinate coordinates7 = new Coordinate(8, 4, DIRECTION.VERTICAL);
         Ship ship7 = new Ship(SHIP_TYPE.CARRIER, coordinates7);
 
         game.addShip(PLAYER_NM.ONE, ship1);
@@ -101,6 +101,34 @@ class GameShould {
                 "0|   |   |   |   |   |   |   |   |   |   |",
                 "1|   |   |   |   |   |   |   |   |   |   |",
                 "2|   |   |   |   |   |   |   |   |   |   |",
+                "3|   |   |   |   |   |   |   |   |   |   |",
+                "4|   |   |   |   |   |   |   |   |   |   |",
+                "5|   |   |   |   |   |   |   |   |   |   |",
+                "6|   |   |   |   |   |   |   |   |   |   |",
+                "7|   |   |   |   |   |   |   |   |   |   |",
+                "8|   |   |   |   |   |   |   |   |   |   |",
+                "9|   |   |   |   |   |   |   |   |   |   |"
+        };
+
+        for (String line : voidBoard ) {
+            verify(console).printLine(line);
+        }
+    }
+
+    @Test public void
+    print_player1_one_gunship_on72() {
+        game.addPlayer(new Player("Player1"));
+        game.print();
+
+        Coordinate coordinates1 = new Coordinate(7, 2, DIRECTION.HORIZONTAL);
+        Ship ship1 = new Ship(SHIP_TYPE.SHOTGUN, coordinates1);
+        game.addShip(PLAYER_NM.ONE, ship1);
+
+        String[] voidBoard = new String[]{
+                " | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
+                "0|   |   |   |   |   |   |   |   |   |   |",
+                "1|   |   |   |   |   |   |   |   |   |   |",
+                "2|   |   |   |   |   |   |   | s |   |   |",
                 "3|   |   |   |   |   |   |   |   |   |   |",
                 "4|   |   |   |   |   |   |   |   |   |   |",
                 "5|   |   |   |   |   |   |   |   |   |   |",

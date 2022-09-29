@@ -2,9 +2,9 @@ package battleship.model;
 
 public class Ship {
     private SHIP_TYPE shipType;
-    private Coordinates coordinates;
+    private Coordinate coordinates;
 
-    public Ship(SHIP_TYPE shipType, Coordinates coordinates) {
+    public Ship(SHIP_TYPE shipType, Coordinate coordinates) {
         this.shipType = shipType;
         this.coordinates = coordinates;
     }

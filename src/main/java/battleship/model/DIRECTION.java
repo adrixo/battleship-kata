@@ -1,5 +1,5 @@
 package battleship.model;
 
 public enum DIRECTION {
-    HORIZONTAL, VERTICAL
+    HORIZONTAL, VERTICAL, NONE
 }
