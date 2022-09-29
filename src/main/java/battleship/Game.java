@@ -35,7 +35,12 @@ public class Game {
     }
 
     public void print() {
-        throw new UnsupportedOperationException();
+        String header = " | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |";
+        console.printLine(header);
+        for (int i = 0; i < 10; i++) {
+            String line = "" + i + "|   |   |   |   |   |   |   |   |   |   |";
+            console.printLine(line);
+        }
     }
 
     public void fire() {
