@@ -9,6 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 class GameShould {
@@ -88,5 +89,29 @@ class GameShould {
         assertThat(game.players.get(PLAYER_NM.ONE).getShips()).contains(ship1);
         assertThat(game.players.get(PLAYER_NM.ONE).getShips()).contains(ship6);
         assertThat(game.players.get(PLAYER_NM.ONE).getShips()).contains(ship7);
+    }
+
+    @Test public void
+    print_player1_void_board() {
+        game.addPlayer(new Player("Player1"));
+        game.print();
+
+        String[] voidBoard = new String[]{
+                " | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
+                "0|   |   |   |   |   |   |   |   |   |   |",
+                "1|   |   |   |   |   |   |   |   |   |   |",
+                "2|   |   |   |   |   |   |   |   |   |   |",
+                "3|   |   |   |   |   |   |   |   |   |   |",
+                "4|   |   |   |   |   |   |   |   |   |   |",
+                "5|   |   |   |   |   |   |   |   |   |   |",
+                "6|   |   |   |   |   |   |   |   |   |   |",
+                "7|   |   |   |   |   |   |   |   |   |   |",
+                "8|   |   |   |   |   |   |   |   |   |   |",
+                "9|   |   |   |   |   |   |   |   |   |   |"
+        };
+
+        for (String line : voidBoard ) {
+            verify(console).printLine(line);
+        }
     }
 }
