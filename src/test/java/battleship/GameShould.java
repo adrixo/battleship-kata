@@ -127,7 +127,7 @@ class GameShould {
                 " | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
                 "0|   |   |   |   |   |   |   |   |   |   |",
                 "1|   |   |   |   |   |   |   |   |   |   |",
-                "2|   |   |   |   |   |   |   | s |   |   |",
+                "2|   |   |   |   |   |   |   | g |   |   |",
                 "3|   |   |   |   |   |   |   |   |   |   |",
                 "4|   |   |   |   |   |   |   |   |   |   |",
                 "5|   |   |   |   |   |   |   |   |   |   |",
@@ -135,6 +135,44 @@ class GameShould {
                 "7|   |   |   |   |   |   |   |   |   |   |",
                 "8|   |   |   |   |   |   |   |   |   |   |",
                 "9|   |   |   |   |   |   |   |   |   |   |"
+        };
+
+        game.print();
+
+        for (String line : expectedBoard ) {
+            verify(console).printLine(line);
+        }
+    }
+
+    @Test public void
+    print_player1_four_gunships() {
+        game.addPlayer(new Player("Player1"));
+
+        Coordinate coordinates1 = new Coordinate(7, 2, DIRECTION.HORIZONTAL);
+        Ship ship1 = new Ship(SHIP_TYPE.SHOTGUN, coordinates1);
+        Coordinate coordinates2 = new Coordinate(6, 4, DIRECTION.HORIZONTAL);
+        Ship ship2 = new Ship(SHIP_TYPE.SHOTGUN, coordinates2);
+        Coordinate coordinates3 = new Coordinate(1, 7, DIRECTION.HORIZONTAL);
+        Ship ship3 = new Ship(SHIP_TYPE.SHOTGUN, coordinates3);
+        Coordinate coordinates4 = new Coordinate(9, 9, DIRECTION.HORIZONTAL);
+        Ship ship4 = new Ship(SHIP_TYPE.SHOTGUN, coordinates4);
+        game.addShip(PLAYER_NM.ONE, ship1);
+        game.addShip(PLAYER_NM.ONE, ship2);
+        game.addShip(PLAYER_NM.ONE, ship3);
+        game.addShip(PLAYER_NM.ONE, ship4);
+
+        String[] expectedBoard = new String[]{
+                " | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
+                "0|   |   |   |   |   |   |   |   |   |   |",
+                "1|   |   |   |   |   |   |   |   |   |   |",
+                "2|   |   |   |   |   |   |   | g |   |   |",
+                "3|   |   |   |   |   |   |   |   |   |   |",
+                "4|   |   |   |   |   |   | g |   |   |   |",
+                "5|   |   |   |   |   |   |   |   |   |   |",
+                "6|   |   |   |   |   |   |   |   |   |   |",
+                "7|   | g |   |   |   |   |   |   |   |   |",
+                "8|   |   |   |   |   |   |   |   |   |   |",
+                "9|   |   |   |   |   |   |   |   |   | g |"
         };
 
         game.print();

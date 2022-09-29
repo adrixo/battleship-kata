@@ -16,6 +16,6 @@ public class Ship {
     }
 
     public String getMark() {
-        return "s";
+        return "g";
     }
 }
