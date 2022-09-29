@@ -63,7 +63,7 @@ class GameShould {
         Player player = new Player("Player1");
         game.addPlayer(player);
         Coordinate coordinates = new Coordinate(7, 2, DIRECTION.HORIZONTAL);
-        Ship ship = new Ship(SHIP_TYPE.SHOTGUN, coordinates);
+        Ship ship = new Ship(SHIP_TYPE.GUNSHIP, coordinates);
 
         game.addShip(PLAYER_NM.ONE, ship);
 
@@ -76,7 +76,7 @@ class GameShould {
         game.addPlayer(player);
 
         Coordinate coordinates1 = new Coordinate(7, 2, DIRECTION.HORIZONTAL);
-        Ship ship1 = new Ship(SHIP_TYPE.SHOTGUN, coordinates1);
+        Ship ship1 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1);
         Coordinate coordinates6 = new Coordinate(5, 7, DIRECTION.VERTICAL);
         Ship ship6 = new Ship(SHIP_TYPE.DESTRUCTOR, coordinates6);
         Coordinate coordinates7 = new Coordinate(8, 4, DIRECTION.VERTICAL);
@@ -120,7 +120,7 @@ class GameShould {
         game.addPlayer(new Player("Player1"));
 
         Coordinate coordinates1 = new Coordinate(7, 2, DIRECTION.HORIZONTAL);
-        Ship ship1 = new Ship(SHIP_TYPE.SHOTGUN, coordinates1);
+        Ship ship1 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1);
         game.addShip(PLAYER_NM.ONE, ship1);
 
         String[] expectedBoard = new String[]{
@@ -149,13 +149,13 @@ class GameShould {
         game.addPlayer(new Player("Player1"));
 
         Coordinate coordinates1 = new Coordinate(7, 2, DIRECTION.HORIZONTAL);
-        Ship ship1 = new Ship(SHIP_TYPE.SHOTGUN, coordinates1);
+        Ship ship1 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1);
         Coordinate coordinates2 = new Coordinate(6, 4, DIRECTION.HORIZONTAL);
-        Ship ship2 = new Ship(SHIP_TYPE.SHOTGUN, coordinates2);
+        Ship ship2 = new Ship(SHIP_TYPE.GUNSHIP, coordinates2);
         Coordinate coordinates3 = new Coordinate(1, 7, DIRECTION.HORIZONTAL);
-        Ship ship3 = new Ship(SHIP_TYPE.SHOTGUN, coordinates3);
+        Ship ship3 = new Ship(SHIP_TYPE.GUNSHIP, coordinates3);
         Coordinate coordinates4 = new Coordinate(9, 9, DIRECTION.HORIZONTAL);
-        Ship ship4 = new Ship(SHIP_TYPE.SHOTGUN, coordinates4);
+        Ship ship4 = new Ship(SHIP_TYPE.GUNSHIP, coordinates4);
         game.addShip(PLAYER_NM.ONE, ship1);
         game.addShip(PLAYER_NM.ONE, ship2);
         game.addShip(PLAYER_NM.ONE, ship3);

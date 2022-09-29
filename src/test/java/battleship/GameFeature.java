@@ -25,13 +25,13 @@ class GameFeature {
         game.addPlayer(player1);
 
         Coordinate coordinates1 = new Coordinate(7, 2, DIRECTION.HORIZONTAL);
-        Ship ship1 = new Ship(SHIP_TYPE.SHOTGUN, coordinates1);
+        Ship ship1 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1);
         Coordinate coordinates2 = new Coordinate(6, 4, DIRECTION.HORIZONTAL);
-        Ship ship2 = new Ship(SHIP_TYPE.SHOTGUN, coordinates2);
+        Ship ship2 = new Ship(SHIP_TYPE.GUNSHIP, coordinates2);
         Coordinate coordinates3 = new Coordinate(1, 7, DIRECTION.HORIZONTAL);
-        Ship ship3 = new Ship(SHIP_TYPE.SHOTGUN, coordinates3);
+        Ship ship3 = new Ship(SHIP_TYPE.GUNSHIP, coordinates3);
         Coordinate coordinates4 = new Coordinate(9, 9, DIRECTION.HORIZONTAL);
-        Ship ship4 = new Ship(SHIP_TYPE.SHOTGUN, coordinates4);
+        Ship ship4 = new Ship(SHIP_TYPE.GUNSHIP, coordinates4);
         Coordinate coordinates5 = new Coordinate(2, 3, DIRECTION.HORIZONTAL);
         Ship ship5 = new Ship(SHIP_TYPE.DESTRUCTOR, coordinates5);
         Coordinate coordinates6 = new Coordinate(5, 7, DIRECTION.VERTICAL);
