@@ -1,5 +1,6 @@
 package battleship;
 
+import battleship.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -61,7 +62,7 @@ class GameShould {
         Player player = new Player("Player1");
         game.addPlayer(player);
         Coordinates coordinates = new Coordinates(7, 2, DIRECTION.HORIZONTAL);
-        Ship ship = new Ship(SHIP.SHOTGUN, coordinates);
+        Ship ship = new Ship(SHIP_TYPE.SHOTGUN, coordinates);
 
         game.addShip(PLAYER_NM.ONE, ship);
 

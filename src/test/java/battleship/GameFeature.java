@@ -1,13 +1,12 @@
 package battleship;
 
+import battleship.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -26,19 +25,19 @@ class GameFeature {
         game.addPlayer(player1);
 
         Coordinates coordinates1 = new Coordinates(7, 2, DIRECTION.HORIZONTAL);
-        Ship ship1 = new Ship(SHIP.SHOTGUN, coordinates1);
+        Ship ship1 = new Ship(SHIP_TYPE.SHOTGUN, coordinates1);
         Coordinates coordinates2 = new Coordinates(6, 4, DIRECTION.HORIZONTAL);
-        Ship ship2 = new Ship(SHIP.SHOTGUN, coordinates2);
+        Ship ship2 = new Ship(SHIP_TYPE.SHOTGUN, coordinates2);
         Coordinates coordinates3 = new Coordinates(1, 7, DIRECTION.HORIZONTAL);
-        Ship ship3 = new Ship(SHIP.SHOTGUN, coordinates3);
+        Ship ship3 = new Ship(SHIP_TYPE.SHOTGUN, coordinates3);
         Coordinates coordinates4 = new Coordinates(9, 9, DIRECTION.HORIZONTAL);
-        Ship ship4 = new Ship(SHIP.SHOTGUN, coordinates4);
+        Ship ship4 = new Ship(SHIP_TYPE.SHOTGUN, coordinates4);
         Coordinates coordinates5 = new Coordinates(2, 3, DIRECTION.HORIZONTAL);
-        Ship ship5 = new Ship(SHIP.DESTRUCTOR, coordinates5);
+        Ship ship5 = new Ship(SHIP_TYPE.DESTRUCTOR, coordinates5);
         Coordinates coordinates6 = new Coordinates(5, 7, DIRECTION.VERTICAL);
-        Ship ship6 = new Ship(SHIP.DESTRUCTOR, coordinates6);
+        Ship ship6 = new Ship(SHIP_TYPE.DESTRUCTOR, coordinates6);
         Coordinates coordinates7 = new Coordinates(8, 4, DIRECTION.VERTICAL);
-        Ship ship7 = new Ship(SHIP.CARRIER, coordinates7);
+        Ship ship7 = new Ship(SHIP_TYPE.CARRIER, coordinates7);
 
         game.addShip(PLAYER_NM.ONE, ship1);
         game.addShip(PLAYER_NM.ONE, ship2);
