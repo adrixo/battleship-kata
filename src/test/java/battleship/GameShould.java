@@ -1,5 +1,7 @@
 package battleship;
 
+import battleship.exceptions.OccupiedSpaceException;
+import battleship.exceptions.ShipOutOfBoundException;
 import battleship.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,6 +16,7 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(MockitoExtension.class)
 class GameShould {
 
+    private static final int MAX_BOARD_SIZE = 10;
     @Mock
     Console console;
     private Game game;
@@ -89,6 +92,99 @@ class GameShould {
         assertThat(game.players.get(PLAYER_NM.ONE).getShips()).contains(ship1);
         assertThat(game.players.get(PLAYER_NM.ONE).getShips()).contains(ship6);
         assertThat(game.players.get(PLAYER_NM.ONE).getShips()).contains(ship7);
+    }
+
+    @Test public void
+    throw_exception_when_add_ship_out_of_bounds_x() {
+        game.addPlayer(new Player("Player1"));
+        Coordinate coordinates1 = new Coordinate(MAX_BOARD_SIZE, 0, DIRECTION.HORIZONTAL);
+        Ship ship1 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1);
+        assertThrows(ShipOutOfBoundException.class, () -> {game.addShip(PLAYER_NM.ONE, ship1); });
+    }
+
+    @Test public void
+    throw_exception_when_add_ship_out_of_bounds_y() {
+        game.addPlayer(new Player("Player1"));
+        Coordinate coordinates1 = new Coordinate(0, MAX_BOARD_SIZE, DIRECTION.HORIZONTAL);
+        Ship ship1 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1);
+        assertThrows(ShipOutOfBoundException.class, () -> {game.addShip(PLAYER_NM.ONE, ship1); });
+    }
+
+    @Test public void
+    throw_exception_when_add_ship_extension_out_of_bounds_horizontal() {
+        /* C C | C*/
+        game.addPlayer(new Player("Player1"));
+        Coordinate coordinates1 = new Coordinate(MAX_BOARD_SIZE-2, 0, DIRECTION.HORIZONTAL);
+        Ship ship1 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1);
+        assertThrows(ShipOutOfBoundException.class, () -> {game.addShip(PLAYER_NM.ONE, ship1); });
+    }
+
+    @Test public void
+    throw_exception_when_add_ship_extension_out_of_bounds_vertical() {
+        /* C
+        *  C
+        *  -
+        *  C*/
+        game.addPlayer(new Player("Player1"));
+        Coordinate coordinates1 = new Coordinate(0, MAX_BOARD_SIZE-2, DIRECTION.HORIZONTAL);
+        Ship ship1 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1);
+        assertThrows(ShipOutOfBoundException.class, () -> {game.addShip(PLAYER_NM.ONE, ship1); });
+    }
+
+    @Test public void
+    throw_exception_when_add_ship_on_occupied_space() {
+        game.addPlayer(new Player("Player1"));
+        Coordinate coordinates1 = new Coordinate(4, 4, DIRECTION.HORIZONTAL);
+        Ship ship1 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1);
+        Ship ship2 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1);
+        game.addShip(PLAYER_NM.ONE, ship1);
+        assertThrows(OccupiedSpaceException.class, () -> {game.addShip(PLAYER_NM.ONE, ship2); });
+    }
+
+    @Test public void
+    throw_exception_when_add_ship_on_occupied_space_by_horizontal_extension() {
+        /*
+         C C [C]
+         */
+        game.addPlayer(new Player("Player1"));
+        Coordinate coordinates1 = new Coordinate(4, 4, DIRECTION.HORIZONTAL);
+        Coordinate coordinates2 = new Coordinate(6, 4, DIRECTION.HORIZONTAL);
+        Ship ship1 = new Ship(SHIP_TYPE.CARRIER, coordinates1);
+        Ship ship2 = new Ship(SHIP_TYPE.GUNSHIP, coordinates2);
+        game.addShip(PLAYER_NM.ONE, ship1);
+        assertThrows(OccupiedSpaceException.class, () -> {game.addShip(PLAYER_NM.ONE, ship2); });
+    }
+
+    @Test public void
+    throw_exception_when_add_ship_on_occupied_space_by_vertical_extension() {
+        /*
+         C
+         C
+         [C]
+         */
+        game.addPlayer(new Player("Player1"));
+        Coordinate coordinates1 = new Coordinate(4, 4, DIRECTION.VERTICAL);
+        Coordinate coordinates2 = new Coordinate(4, 6, DIRECTION.HORIZONTAL);
+        Ship ship1 = new Ship(SHIP_TYPE.CARRIER, coordinates1);
+        Ship ship2 = new Ship(SHIP_TYPE.GUNSHIP, coordinates2);
+        game.addShip(PLAYER_NM.ONE, ship1);
+        assertThrows(OccupiedSpaceException.class, () -> {game.addShip(PLAYER_NM.ONE, ship2); });
+    }
+
+    @Test public void
+    throw_exception_when_add_ship_on_occupied_space_both_extension() {
+        /*
+              C
+              C
+         C C [C]
+         */
+        game.addPlayer(new Player("Player1"));
+        Coordinate coordinates1 = new Coordinate(4, 4, DIRECTION.VERTICAL);
+        Coordinate coordinates2 = new Coordinate(2, 6, DIRECTION.HORIZONTAL);
+        Ship ship1 = new Ship(SHIP_TYPE.CARRIER, coordinates1);
+        Ship ship2 = new Ship(SHIP_TYPE.CARRIER, coordinates2);
+        game.addShip(PLAYER_NM.ONE, ship1);
+        assertThrows(OccupiedSpaceException.class, () -> {game.addShip(PLAYER_NM.ONE, ship2); });
     }
 
     @Test public void
