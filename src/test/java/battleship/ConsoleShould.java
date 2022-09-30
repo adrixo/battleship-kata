@@ -2,6 +2,7 @@ package battleship;
 
 import battleship.mocks.InjectedMock;
 import battleship.mocks.TestableConsole;
+import battleship.mocks.TestablePlayer;
 import battleship.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,7 @@ import java.util.List;
 import static net.bytebuddy.matcher.ElementMatchers.not;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -60,16 +62,13 @@ class ConsoleShould {
 
     @Test public void
     print_player1_four_gunships() {
-        Coordinate coordinates1 = new Coordinate(7, 2, DIRECTION.HORIZONTAL);
-        Coordinate coordinates2 = new Coordinate(6, 4, DIRECTION.HORIZONTAL);
-        Coordinate coordinates3 = new Coordinate(1, 7, DIRECTION.HORIZONTAL);
-        Coordinate coordinates4 = new Coordinate(9, 9, DIRECTION.HORIZONTAL);
+        // TODO: Console should print a more generic object instead of managing the Player
+        Coordinate coordinates1 = new Coordinate(7, 2, DIRECTION.NONE);
+        Coordinate coordinates2 = new Coordinate(6, 4, DIRECTION.NONE);
+        Coordinate coordinates3 = new Coordinate(1, 7, DIRECTION.NONE);
+        Coordinate coordinates4 = new Coordinate(9, 9, DIRECTION.NONE);
         List<Coordinate> coordinates = Arrays.asList(coordinates1,coordinates2,coordinates3,coordinates4);
-        when(currentPlayer.getMarkAt(any())).thenReturn(" ");
-        when(currentPlayer.getMarkAt(coordinates1)).thenReturn("g");
-        when(currentPlayer.getMarkAt(coordinates2)).thenReturn("g");
-        when(currentPlayer.getMarkAt(coordinates3)).thenReturn("g");
-        when(currentPlayer.getMarkAt(coordinates4)).thenReturn("g");
+        TestablePlayer player = new TestablePlayer(coordinates);
         String[] expectedBoard = new String[]{
                 " | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
                 "0|   |   |   |   |   |   |   |   |   |   |",
@@ -81,9 +80,9 @@ class ConsoleShould {
                 "6|   |   |   |   |   |   |   |   |   |   |",
                 "7|   | g |   |   |   |   |   |   |   |   |",
                 "8|   |   |   |   |   |   |   |   |   |   |",
-                "9|   |   |   |   |   |   |   |   |   | g |"
+                "9|   |   |   |   |   |   |   |   | g | g |"
         };
-        console.printPlayersBoard(currentPlayer);
+        console.printPlayersBoard(player);
         for (String line : expectedBoard ) {
             verify(im).printLine(line);
         }
