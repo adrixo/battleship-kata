@@ -34,6 +34,7 @@ public class Game {
     }
 
     public void addShip(Ship Ship) throws OccupiedSpaceException, ShipOutOfBoundException {
+        //if the addship depends on playerService's current user, we have temporal cohesion
         playerService.addShip(Ship);
     }
 
