@@ -11,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;
 
@@ -78,6 +79,7 @@ class GameFeature {
             verify(im).printLine(line);
         }
     }
+
     @Test
     void both_players_fire() throws OccupiedSpaceException, ShipOutOfBoundException {
         console = new TestableConsole(im);
@@ -174,5 +176,34 @@ class GameFeature {
         for(String line : resultLinesP2) {
             verify(im, atLeastOnce()).printLine(line);
         }
+    }
+    @Test
+    void player_two_destroy_player_one_ships() throws OccupiedSpaceException, ShipOutOfBoundException {
+        console = new TestableConsole(im);
+        playerService = new PlayerService();
+        Game game = new Game(console, playerService);
+        Player player1 = new Player("Player1");
+        game.addPlayer(player1);
+        Player player2 = new Player("Player2");
+        game.addPlayer(player2);
+
+        Coordinate coordinates1 = new Coordinate(7, 2, DIRECTION.HORIZONTAL);
+        Ship ship1 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1);
+        Coordinate coordinates2 = new Coordinate(6, 4, DIRECTION.HORIZONTAL);
+        Ship ship2 = new Ship(SHIP_TYPE.GUNSHIP, coordinates2);
+        game.addShip(ship1, PLAYER_NM.ONE);
+        game.addShip(ship2, PLAYER_NM.ONE);
+        Coordinate coordinates1P2 = new Coordinate(7, 1, DIRECTION.HORIZONTAL);
+        Ship ship1P2 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1P2);
+        game.addShip(ship1P2, PLAYER_NM.TWO);
+        game.start();
+        game.fire(new Coordinate(4, 4)); // none
+        game.fire(new Coordinate(7, 2)); // destroy 1
+        game.fire(new Coordinate(4, 3)); // none
+        game.fire(new Coordinate(6, 3)); // water
+        game.fire(new Coordinate(0, 0)); // none
+        game.fire(new Coordinate(6, 4)); // destroy 2
+        Player winner = game.getWinner();
+        assertEquals(winner, player2);
     }
 }

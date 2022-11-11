@@ -43,4 +43,12 @@ public class Player {
     public void hitAt(Coordinate coordinate) {
         hits.add(coordinate);
     }
+
+    public boolean hasAliveShips() {
+        for(Ship ship : ships) {
+            if (ship.lives != 0)
+                return false;
+        }
+        return true;
+    }
 }

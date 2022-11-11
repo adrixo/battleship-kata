@@ -5,12 +5,14 @@ import java.util.List;
 public class Ship {
     private SHIP_TYPE shipType;
     public final Coordinate originCoordinates;
+    public int lives;
     public final List<Coordinate> occupiedCoordinates;
 
     public Ship(SHIP_TYPE shipType, Coordinate coordinates) {
         this.shipType = shipType;
         this.originCoordinates = coordinates;
         this.occupiedCoordinates = Coordinate.generateLine(originCoordinates, shipType.getSize());
+        this.lives = shipType.getSize();
     }
 
     public boolean occupies(Coordinate point) {

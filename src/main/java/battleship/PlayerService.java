@@ -60,4 +60,12 @@ public class PlayerService {
     public void swapPlayer() {
         current = current.swap();
     }
+
+    public Player getWinner() {
+        if (!players.get(PLAYER_NM.ONE).hasAliveShips())
+            return players.get(PLAYER_NM.TWO);
+        if (!players.get(PLAYER_NM.TWO).hasAliveShips())
+            return players.get(PLAYER_NM.ONE);
+        return null;
+    }
 }

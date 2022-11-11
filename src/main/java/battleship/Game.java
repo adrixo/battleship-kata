@@ -46,4 +46,7 @@ public class Game {
         playerService.addShip(Ship, player);
     }
 
+    public Player getWinner() {
+        return playerService.getWinner();
+    }
 }
