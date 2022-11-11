@@ -9,7 +9,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.isA;
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -21,6 +23,8 @@ class GameShould {
     private Game game;
     @Mock
     PlayerService playerService;
+    @Mock
+    Player playerMock;
 
     @BeforeEach
     public void
@@ -53,5 +57,12 @@ class GameShould {
         when(playerService.currentPlayer()).thenReturn(new Player("player1"));
         game.print();
         verify(console).printPlayersBoard(isA(Player.class));
+    }
+
+    @Test public void
+    fire() {
+        when(playerService.currentPlayer()).thenReturn(playerMock);
+        game.fire(new Coordinate(0,0));
+        then(playerService).should().swapPlayer();
     }
 }

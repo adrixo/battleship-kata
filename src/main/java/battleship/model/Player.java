@@ -5,11 +5,12 @@ import java.util.ArrayList;
 public class Player {
     private String name;
     private ArrayList<Ship> ships;
+    private ArrayList<Coordinate> hits;
 
     public Player(String name) {
-
         this.name = name;
         this.ships = new ArrayList<>();
+        this.hits = new ArrayList<>();
     }
 
     public ArrayList<Ship> getShips() {
@@ -26,5 +27,9 @@ public class Player {
                 return ship.getMark();
         }
         return " ";
+    }
+
+    public void hitAt(Coordinate coordinate) {
+        hits.add(coordinate);
     }
 }

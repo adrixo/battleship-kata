@@ -2,6 +2,7 @@ package battleship;
 
 import battleship.exceptions.OccupiedSpaceException;
 import battleship.exceptions.ShipOutOfBoundException;
+import battleship.model.Coordinate;
 import battleship.model.PLAYER_NM;
 import battleship.model.Player;
 import battleship.model.Ship;
@@ -20,7 +21,7 @@ public class Game {
     }
 
     public void start() {
-        throw new UnsupportedOperationException();
+        playerService.start();
     }
 
     public void print() {
@@ -29,8 +30,10 @@ public class Game {
         console.printPlayersBoard(currentPlayer);
     }
 
-    public void fire() {
-        throw new UnsupportedOperationException();
+    public void fire(Coordinate coordinate) {
+        Player currentPlayer = playerService.currentPlayer();
+        currentPlayer.hitAt(coordinate);
+        playerService.swapPlayer();
     }
 
     public void addShip(Ship Ship, PLAYER_NM player) throws OccupiedSpaceException, ShipOutOfBoundException {

@@ -38,6 +38,23 @@ class PlayerServiceShould {
         assertThat(playerService.players.get(PLAYER_NM.ONE)).isEqualTo(player);
         assertThat(playerService.players.get(PLAYER_NM.TWO)).isEqualTo(player2);
     }
+    @Test public void
+    switch_between_players() {
+        Player player = new Player("player1");
+        Player player2 = new Player("player2");
+        playerService.addPlayer(player);
+        playerService.addPlayer(player2);
+
+        playerService.start();
+        playerService.swapPlayer();
+        Player current = playerService.currentPlayer();
+        assertThat(current).isEqualTo(player2);
+
+        playerService.swapPlayer();
+        current = playerService.currentPlayer();
+        assertThat(current).isEqualTo(player);
+
+    }
 
     @Test public void
     throw_exception_when_add_3_players() {

@@ -11,6 +11,7 @@ import java.util.Map;
 public class PlayerService {
 
     public final Map<PLAYER_NM, Player> players = new HashMap<>();
+    PLAYER_NM current;
 
     public void addPlayer(Player player) {
         if (players.size() >= 2)
@@ -22,8 +23,14 @@ public class PlayerService {
         players.put(PLAYER_NM.ONE, player);
     }
 
+    public void start() {
+        current = PLAYER_NM.ONE;
+    }
+
     public Player currentPlayer() {
-        return players.get(PLAYER_NM.ONE);
+        if (current == null)
+            throw new UnsupportedOperationException();
+        return players.get(current);
     }
 
     void addShip(Ship newShip, PLAYER_NM playerNm) throws OccupiedSpaceException, ShipOutOfBoundException {
@@ -44,5 +51,13 @@ public class PlayerService {
     private static void verifyOutOfBounds(Ship newShip) throws ShipOutOfBoundException {
         if (newShip.isOutOfBounds())
             throw new ShipOutOfBoundException();
+    }
+
+    public Object currentPlayerFire(Coordinate coordinate) {
+        throw new UnsupportedOperationException();
+    }
+
+    public void swapPlayer() {
+        current = current.swap();
     }
 }
