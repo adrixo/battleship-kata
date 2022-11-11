@@ -38,18 +38,13 @@ public class Coordinate {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj.getClass() != this.getClass()) {
-            return false;
-        }
-        final Coordinate other = (Coordinate) obj;
-        if (this.x == other.x && this.y == other.y) {
+    public boolean equals(Object o) {
+        if (this == o)
             return true;
-        }
-        return false;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Coordinate that = (Coordinate) o;
+        return x == that.x && y == that.y;
     }
 
     @Override
