@@ -26,9 +26,9 @@ public class PlayerService {
         return players.get(PLAYER_NM.ONE);
     }
 
-    void addShip(Ship newShip) throws OccupiedSpaceException, ShipOutOfBoundException {
+    void addShip(Ship newShip, PLAYER_NM playerNm) throws OccupiedSpaceException, ShipOutOfBoundException {
         verifyOutOfBounds(newShip);
-        Player player = currentPlayer();
+        Player player = players.get(playerNm);
         verifyNotColision(player.getShips(), newShip);
         player.addShip(newShip);
     }

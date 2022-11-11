@@ -48,13 +48,13 @@ class GameFeature {
         Coordinate coordinates7 = new Coordinate(8, 4, DIRECTION.VERTICAL);
         Ship ship7 = new Ship(SHIP_TYPE.CARRIER, coordinates7);
 
-        game.addShip(ship1);
-        game.addShip(ship2);
-        game.addShip(ship3);
-        game.addShip(ship4);
-        game.addShip(ship5);
-        game.addShip(ship6);
-        game.addShip(ship7);
+        game.addShip(ship1, PLAYER_NM.ONE);
+        game.addShip(ship2, PLAYER_NM.ONE);
+        game.addShip(ship3, PLAYER_NM.ONE);
+        game.addShip(ship4, PLAYER_NM.ONE);
+        game.addShip(ship5, PLAYER_NM.ONE);
+        game.addShip(ship6, PLAYER_NM.ONE);
+        game.addShip(ship7, PLAYER_NM.ONE);
 
         game.print();
 

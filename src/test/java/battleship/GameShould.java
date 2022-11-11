@@ -9,8 +9,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -45,8 +43,8 @@ class GameShould {
         game.addPlayer(player);
         Coordinate coordinates = new Coordinate(7, 2, DIRECTION.HORIZONTAL);
         Ship ship = new Ship(SHIP_TYPE.GUNSHIP, coordinates);
-        game.addShip(ship);
-        verify(playerService).addShip(ship);
+        game.addShip(ship, PLAYER_NM.ONE);
+        verify(playerService).addShip(ship, PLAYER_NM.ONE);
     }
 
     @Test

@@ -57,7 +57,7 @@ class PlayerServiceShould {
         playerService.addPlayer(player);
         Coordinate coordinates = new Coordinate(7, 2, DIRECTION.HORIZONTAL);
         Ship ship = new Ship(SHIP_TYPE.GUNSHIP, coordinates);
-        playerService.addShip(ship);
+        playerService.addShip(ship, PLAYER_NM.ONE);
         assertThat(playerService.players.get(PLAYER_NM.ONE).getShips()).contains(ship);
     }
         
@@ -71,9 +71,9 @@ class PlayerServiceShould {
         Ship ship6 = new Ship(SHIP_TYPE.DESTRUCTOR, coordinates6);
         Coordinate coordinates7 = new Coordinate(8, 4, DIRECTION.VERTICAL);
         Ship ship7 = new Ship(SHIP_TYPE.CARRIER, coordinates7);
-        playerService.addShip(ship1);
-        playerService.addShip(ship6);
-        playerService.addShip(ship7);
+        playerService.addShip(ship1, PLAYER_NM.ONE);
+        playerService.addShip(ship6, PLAYER_NM.ONE);
+        playerService.addShip(ship7, PLAYER_NM.ONE);
         assertThat(playerService.players.get(PLAYER_NM.ONE).getShips()).contains(ship1);
         assertThat(playerService.players.get(PLAYER_NM.ONE).getShips()).contains(ship6);
         assertThat(playerService.players.get(PLAYER_NM.ONE).getShips()).contains(ship7);
@@ -84,7 +84,7 @@ class PlayerServiceShould {
         playerService.addPlayer(new Player("Player1"));
         Coordinate coordinates1 = new Coordinate(MAX_BOARD_SIZE, 0, DIRECTION.HORIZONTAL);
         Ship ship1 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1);
-        assertThrows(ShipOutOfBoundException.class, () -> {playerService.addShip(ship1); });
+        assertThrows(ShipOutOfBoundException.class, () -> {playerService.addShip(ship1, PLAYER_NM.ONE); });
     }
 
     @Test public void
@@ -92,7 +92,7 @@ class PlayerServiceShould {
         playerService.addPlayer(new Player("Player1"));
         Coordinate coordinates1 = new Coordinate(0, MAX_BOARD_SIZE, DIRECTION.HORIZONTAL);
         Ship ship1 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1);
-        assertThrows(ShipOutOfBoundException.class, () -> {playerService.addShip(ship1); });
+        assertThrows(ShipOutOfBoundException.class, () -> {playerService.addShip(ship1, PLAYER_NM.ONE); });
     }
 
     @Test public void
@@ -101,7 +101,7 @@ class PlayerServiceShould {
         playerService.addPlayer(new Player("Player1"));
         Coordinate coordinates1 = new Coordinate(MAX_BOARD_SIZE-2, 0, DIRECTION.HORIZONTAL);
         Ship ship1 = new Ship(SHIP_TYPE.CARRIER, coordinates1);
-        assertThrows(ShipOutOfBoundException.class, () -> {playerService.addShip(ship1); });
+        assertThrows(ShipOutOfBoundException.class, () -> {playerService.addShip(ship1, PLAYER_NM.ONE); });
     }
 
     @Test public void
@@ -113,7 +113,7 @@ class PlayerServiceShould {
         playerService.addPlayer(new Player("Player1"));
         Coordinate coordinates1 = new Coordinate(0, MAX_BOARD_SIZE-2, DIRECTION.VERTICAL);
         Ship ship1 = new Ship(SHIP_TYPE.DESTRUCTOR, coordinates1);
-        assertThrows(ShipOutOfBoundException.class, () -> {playerService.addShip(ship1); });
+        assertThrows(ShipOutOfBoundException.class, () -> {playerService.addShip(ship1, PLAYER_NM.ONE); });
     }
 
     @Test public void
@@ -122,8 +122,8 @@ class PlayerServiceShould {
         Coordinate coordinates1 = new Coordinate(4, 4, DIRECTION.HORIZONTAL);
         Ship ship1 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1);
         Ship ship2 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1);
-        playerService.addShip(ship1);
-        assertThrows(OccupiedSpaceException.class, () -> {playerService.addShip(ship2); });
+        playerService.addShip(ship1, PLAYER_NM.ONE);
+        assertThrows(OccupiedSpaceException.class, () -> {playerService.addShip(ship2, PLAYER_NM.ONE); });
     }
 
     @Test public void
@@ -136,8 +136,8 @@ class PlayerServiceShould {
         Coordinate coordinates2 = new Coordinate(6, 4, DIRECTION.HORIZONTAL);
         Ship ship1 = new Ship(SHIP_TYPE.CARRIER, coordinates1);
         Ship ship2 = new Ship(SHIP_TYPE.GUNSHIP, coordinates2);
-        playerService.addShip(ship1);
-        assertThrows(OccupiedSpaceException.class, () -> {playerService.addShip(ship2); });
+        playerService.addShip(ship1, PLAYER_NM.ONE);
+        assertThrows(OccupiedSpaceException.class, () -> {playerService.addShip(ship2, PLAYER_NM.ONE); });
     }
 
     @Test public void
@@ -152,8 +152,8 @@ class PlayerServiceShould {
         Coordinate coordinates2 = new Coordinate(4, 6, DIRECTION.HORIZONTAL);
         Ship ship1 = new Ship(SHIP_TYPE.CARRIER, coordinates1);
         Ship ship2 = new Ship(SHIP_TYPE.GUNSHIP, coordinates2);
-        playerService.addShip(ship1);
-        assertThrows(OccupiedSpaceException.class, () -> {playerService.addShip(ship2); });
+        playerService.addShip(ship1, PLAYER_NM.ONE);
+        assertThrows(OccupiedSpaceException.class, () -> {playerService.addShip(ship2, PLAYER_NM.ONE); });
     }
 
     @Test public void
@@ -168,7 +168,7 @@ class PlayerServiceShould {
         Coordinate coordinates2 = new Coordinate(2, 6, DIRECTION.HORIZONTAL);
         Ship ship1 = new Ship(SHIP_TYPE.CARRIER, coordinates1);
         Ship ship2 = new Ship(SHIP_TYPE.CARRIER, coordinates2);
-        playerService.addShip(ship1);
-        assertThrows(OccupiedSpaceException.class, () -> {playerService.addShip(ship2); });
+        playerService.addShip(ship1, PLAYER_NM.ONE);
+        assertThrows(OccupiedSpaceException.class, () -> {playerService.addShip(ship2, PLAYER_NM.ONE); });
     }
 }

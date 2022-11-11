@@ -2,7 +2,7 @@ package battleship;
 
 import battleship.exceptions.OccupiedSpaceException;
 import battleship.exceptions.ShipOutOfBoundException;
-import battleship.model.Coordinate;
+import battleship.model.PLAYER_NM;
 import battleship.model.Player;
 import battleship.model.Ship;
 
@@ -33,9 +33,8 @@ public class Game {
         throw new UnsupportedOperationException();
     }
 
-    public void addShip(Ship Ship) throws OccupiedSpaceException, ShipOutOfBoundException {
-        //if the addship depends on playerService's current user, we have temporal cohesion
-        playerService.addShip(Ship);
+    public void addShip(Ship Ship, PLAYER_NM player) throws OccupiedSpaceException, ShipOutOfBoundException {
+        playerService.addShip(Ship, player);
     }
 
 }
