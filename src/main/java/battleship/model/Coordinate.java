@@ -36,4 +36,25 @@ public class Coordinate {
             return new Coordinate(x, y+numberOfSteps, direction);
         return new Coordinate(x,y);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+        final Coordinate other = (Coordinate) obj;
+        if (this.x == other.x && this.y == other.y) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        String xyComposed = x + "-" + y;
+        return xyComposed.hashCode();
+    }
 }

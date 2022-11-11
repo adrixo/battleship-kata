@@ -1,16 +1,17 @@
 package battleship.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Player {
     private String name;
     private ArrayList<Ship> ships;
-    private ArrayList<Coordinate> hits;
+    public final Map<Coordinate, Boolean> hits = new HashMap<>();
 
     public Player(String name) {
         this.name = name;
         this.ships = new ArrayList<>();
-        this.hits = new ArrayList<>();
     }
 
     public ArrayList<Ship> getShips() {
@@ -24,24 +25,25 @@ public class Player {
     public String getMarkAt(Coordinate coordinate) {
         for (Ship ship : ships) {
             if (ship.occupies(coordinate)) {
-                for(Coordinate hit : hits) {
-                    if(coordinate.x == hit.x && coordinate.y == hit.y && ship.occupies(coordinate)){
-                        return "X";
-                    }
-                }
+                if (hasHit(coordinate))
+                    return "X";
                 return ship.getMark();
             }
         }
-        for(Coordinate hit : hits) {
-            if (coordinate.x == hit.x && coordinate.y == hit.y) {
-                return ".";
-            }
-        }
+        if (hasHit(coordinate))
+            return ".";
         return " ";
     }
 
+    private boolean hasHit(Coordinate coordinate) {
+        Boolean hit = hits.get(coordinate);
+        if (hit == null)
+            return false;
+        return true;
+    }
+
     public void hitAt(Coordinate coordinate) {
-        hits.add(coordinate);
+        hits.put(coordinate, true);
     }
 
     public boolean hasAliveShips() {

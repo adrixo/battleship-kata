@@ -42,7 +42,7 @@ public class Game {
         playerService.swapPlayer();
     }
 
-    public void addShip(Ship Ship, PLAYER_NM player) throws OccupiedSpaceException, ShipOutOfBoundException {
+    public void addShip(Ship Ship, PLAYER_NM player) {
         playerService.addShip(Ship, player);
     }
 

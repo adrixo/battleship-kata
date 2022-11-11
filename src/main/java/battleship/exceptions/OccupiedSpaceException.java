@@ -1,4 +1,4 @@
 package battleship.exceptions;
 
-public class OccupiedSpaceException extends Exception {
+public class OccupiedSpaceException extends RuntimeException {
 }

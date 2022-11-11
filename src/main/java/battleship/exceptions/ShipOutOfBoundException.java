@@ -1,4 +1,4 @@
 package battleship.exceptions;
 
-public class ShipOutOfBoundException extends Exception{
+public class ShipOutOfBoundException extends RuntimeException {
 }
