@@ -11,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -108,19 +109,19 @@ class GameFeature {
         game.addShip(ship5, PLAYER_NM.ONE);
         game.addShip(ship6, PLAYER_NM.ONE);
         game.addShip(ship7, PLAYER_NM.ONE);
-        Coordinate coordinates1P2 = new Coordinate(7, 2, DIRECTION.HORIZONTAL);
+        Coordinate coordinates1P2 = new Coordinate(7, 1, DIRECTION.HORIZONTAL);
         Ship ship1P2 = new Ship(SHIP_TYPE.GUNSHIP, coordinates1P2);
-        Coordinate coordinates2P2 = new Coordinate(6, 4, DIRECTION.HORIZONTAL);
+        Coordinate coordinates2P2 = new Coordinate(6, 3, DIRECTION.HORIZONTAL);
         Ship ship2P2 = new Ship(SHIP_TYPE.GUNSHIP, coordinates2P2);
-        Coordinate coordinates3P2 = new Coordinate(1, 7, DIRECTION.HORIZONTAL);
+        Coordinate coordinates3P2 = new Coordinate(1, 6, DIRECTION.HORIZONTAL);
         Ship ship3P2 = new Ship(SHIP_TYPE.GUNSHIP, coordinates3P2);
-        Coordinate coordinates4P2 = new Coordinate(9, 9, DIRECTION.HORIZONTAL);
+        Coordinate coordinates4P2 = new Coordinate(9, 8, DIRECTION.HORIZONTAL);
         Ship ship4P2 = new Ship(SHIP_TYPE.GUNSHIP, coordinates4P2);
-        Coordinate coordinates5P2 = new Coordinate(2, 3, DIRECTION.HORIZONTAL);
+        Coordinate coordinates5P2 = new Coordinate(2, 2, DIRECTION.HORIZONTAL);
         Ship ship5P2 = new Ship(SHIP_TYPE.DESTRUCTOR, coordinates5P2);
-        Coordinate coordinates6P2 = new Coordinate(5, 7, DIRECTION.VERTICAL);
+        Coordinate coordinates6P2 = new Coordinate(5, 6, DIRECTION.VERTICAL);
         Ship ship6P2 = new Ship(SHIP_TYPE.DESTRUCTOR, coordinates6P2);
-        Coordinate coordinates7P2 = new Coordinate(8, 4, DIRECTION.VERTICAL);
+        Coordinate coordinates7P2 = new Coordinate(8, 3, DIRECTION.VERTICAL);
         Ship ship7P2 = new Ship(SHIP_TYPE.CARRIER, coordinates7P2);
         game.addShip(ship1P2, PLAYER_NM.TWO);
         game.addShip(ship2P2, PLAYER_NM.TWO);
@@ -128,21 +129,7 @@ class GameFeature {
         game.addShip(ship4P2, PLAYER_NM.TWO);
         game.addShip(ship5P2, PLAYER_NM.TWO);
         game.addShip(ship6P2, PLAYER_NM.TWO);
-        game.addShip(ship7P2, PLAYER_NM.TWO);
-        String[] resultLinesP2 = new String[]{
-                " | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
-                "0|   |   |   |   |   |   |   |   |   |   |",
-                "1|   |   |   |   |   |   |   | g |   |   |",
-                "2|   |   | d | d | d |   |   |   |   |   |",
-                "3|   |   |   |   | . |   | g |   | c |   |",
-                "4|   |   |   |   | . |   | . |   | c |   |",
-                "5|   |   |   |   |   |   |   |   | c |   |",
-                "6|   | g |   |   |   | d |   |   | X |   |",
-                "7|   |   |   |   |   | d |   |   |   |   |",
-                "8|   |   |   |   |   | d |   |   |   | g |",
-                "9|   |   |   |   |   |   |   |   |   |   |"
-        };
-
+        game.addShip(ship7P2, PLAYER_NM.TWO);;
         String[] resultLinesP1 = new String[]{
                 " | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
                 "0|   |   |   |   |   |   |   |   |   |   |",
@@ -156,6 +143,19 @@ class GameFeature {
                 "8|   |   |   |   |   | d |   |   |   |   |",
                 "9|   |   |   |   |   | d |   |   |   | g |"
         };
+        String[] resultLinesP2 = new String[]{
+                " | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",
+                "0|   |   |   |   |   |   |   |   |   |   |",
+                "1|   |   |   |   |   |   |   | g |   |   |",
+                "2|   |   | d | d | d |   |   |   |   |   |",
+                "3|   |   |   |   | . |   | g |   | c |   |",
+                "4|   |   |   |   | . |   | . |   | c |   |",
+                "5|   |   |   |   |   |   |   |   | c |   |",
+                "6|   | g |   |   |   | d |   |   | X |   |",
+                "7|   |   |   |   |   | d |   |   |   |   |",
+                "8|   |   |   |   |   | d |   |   |   | g |",
+                "9|   |   |   |   |   |   |   |   |   |   |"
+        };
         game.start();
         game.fire(new Coordinate(4, 4));
         game.fire(new Coordinate(4, 4));
@@ -164,15 +164,15 @@ class GameFeature {
         game.fire(new Coordinate(6, 4));
         game.fire(new Coordinate(6, 4));
         game.fire(new Coordinate(8, 6));
-        game.print();
         game.fire(new Coordinate(8, 6));
-        game.print();
+        game.print(PLAYER_NM.ONE);
+        game.print(PLAYER_NM.TWO);
 
         for(String line : resultLinesP1) {
-            verify(im).printLine(line);
+            verify(im, atLeastOnce()).printLine(line);
         }
         for(String line : resultLinesP2) {
-            verify(im).printLine(line);
+            verify(im, atLeastOnce()).printLine(line);
         }
     }
 }

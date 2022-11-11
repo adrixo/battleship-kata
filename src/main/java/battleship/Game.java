@@ -30,6 +30,12 @@ public class Game {
         console.printPlayersBoard(currentPlayer);
     }
 
+    void print(PLAYER_NM playerNm) {
+        Player currentPlayer = playerService.players.get(playerNm);
+
+        console.printPlayersBoard(currentPlayer);
+    }
+
     public void fire(Coordinate coordinate) {
         Player currentPlayer = playerService.currentPlayer();
         currentPlayer.hitAt(coordinate);

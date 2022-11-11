@@ -23,8 +23,19 @@ public class Player {
 
     public String getMarkAt(Coordinate coordinate) {
         for (Ship ship : ships) {
-            if (ship.occupies(coordinate))
+            if (ship.occupies(coordinate)) {
+                for(Coordinate hit : hits) {
+                    if(coordinate.x == hit.x && coordinate.y == hit.y && ship.occupies(coordinate)){
+                        return "X";
+                    }
+                }
                 return ship.getMark();
+            }
+        }
+        for(Coordinate hit : hits) {
+            if (coordinate.x == hit.x && coordinate.y == hit.y) {
+                return ".";
+            }
         }
         return " ";
     }
