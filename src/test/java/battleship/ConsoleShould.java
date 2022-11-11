@@ -66,8 +66,9 @@ class ConsoleShould {
         Coordinate coordinates1 = new Coordinate(7, 2, DIRECTION.NONE);
         Coordinate coordinates2 = new Coordinate(6, 4, DIRECTION.NONE);
         Coordinate coordinates3 = new Coordinate(1, 7, DIRECTION.NONE);
-        Coordinate coordinates4 = new Coordinate(9, 9, DIRECTION.NONE);
-        List<Coordinate> coordinates = Arrays.asList(coordinates1,coordinates2,coordinates3,coordinates4);
+        Coordinate coordinates4 = new Coordinate(8, 9, DIRECTION.NONE);
+        Coordinate coordinates5 = new Coordinate(9, 9, DIRECTION.NONE);
+        List<Coordinate> coordinates = Arrays.asList(coordinates1,coordinates2,coordinates3,coordinates4, coordinates5);
         TestablePlayer player = new TestablePlayer(coordinates);
         String[] expectedBoard = new String[]{
                 " | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |",

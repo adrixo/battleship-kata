@@ -10,7 +10,7 @@ public class Ship {
     public Ship(SHIP_TYPE shipType, Coordinate coordinates) {
         this.shipType = shipType;
         this.originCoordinates = coordinates;
-        this.occupiedCoordinates = Coordinate.generateShipOfOccupiedCoordinates(originCoordinates, shipType.getSize());
+        this.occupiedCoordinates = Coordinate.generateLine(originCoordinates, shipType.getSize());
     }
 
     public boolean occupies(Coordinate point) {

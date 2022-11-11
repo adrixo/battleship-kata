@@ -20,16 +20,16 @@ public class Coordinate {
         this.direction = direction;
     }
 
-    public static List<Coordinate> generateShipOfOccupiedCoordinates(Coordinate originCoordinates1, int size) {
+    public static List<Coordinate> generateLine(Coordinate originCoordinates1, int size) {
         ArrayList<Coordinate> shipCoordinates = new ArrayList<>();
         shipCoordinates.add(originCoordinates1);
         for (int steps = 0; steps < size; steps++) {
-            shipCoordinates.add(originCoordinates1.getPositionMoving(steps));
+            shipCoordinates.add(originCoordinates1.getPositionAt(steps));
         }
         return shipCoordinates;
     }
 
-    public Coordinate getPositionMoving(int numberOfSteps) {
+    public Coordinate getPositionAt(int numberOfSteps) {
         if(direction==DIRECTION.HORIZONTAL)
             return new Coordinate(x+numberOfSteps, y, direction);
         if(direction==DIRECTION.VERTICAL)
